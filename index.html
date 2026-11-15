@@ -104,61 +104,61 @@ let activeFilter="Todos";
 function go(page){document.querySelectorAll("main>section").forEach(s=>s.classList.add("hidden"));const el=document.getElementById("page-"+page);if(el)el.classList.remove("hidden");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));window.scrollTo({top:0,behavior:"smooth"});}
 document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
 function renderCars(){const q=(document.getElementById("carSearch")?.value||"").toLowerCase();const list=models.filter(m=>(activeFilter==="Todos"||m.cat===activeFilter)&&(m.name+" "+m.cat+" "+m.desc).toLowerCase().includes(q));document.getElementById("cars").innerHTML=list.map(m=>'<article class="car"><span class="pill">'+m.cat+'</span><div class="name">'+m.name+'</div><p>'+m.desc+'</p><button class="btn ghost" onclick="showCar(\''+m.name.replace(/'/g,"\\'")+'\')">Abrir ficha →</button></article>').join("")||'<p class="muted">Nenhum modelo encontrado.</p>';}
-function showCar(name){const m=models.find(x=>x.name===name);let html='<div class="eyebrow">Ficha de consulta • '+m.cat+'</div><h1>'+m.name+'</h1><p class="lead">'+m.desc+'</p><div class="warning">Ficha em construção. Dados abaixo referem-se ao Polo ano-modelo 2026 conforme manual e página oficial Volkswagen consultados. Equipamentos e disponibilidade devem ser confirmados por versão e estoque Norpave.</div>';
-if(name==="Polo"){html+=`
-<div class="section-head"><div><h2>Visão geral do produto</h2><p>Hatch compacto flex com opções de motor aspirado MPI e turbo TSI.</p></div><span class="pill">Ano-modelo 2026 · referência</span></div>
+function showCar(name){const m=models.find(x=>x.name===name);let html='<div class="eyebrow">Ficha de consulta • '+m.cat+'</div><h1>'+m.name+'</h1><p class="lead">'+m.desc+'</p>';
+if(name==="Tera"){html+=`
+<div class="warning"><b>Atualização importante — linha 2027:</b> a Volkswagen já informa motor 200 TSI e câmbio automático de 8 marchas nas versões Comfort e High. As versões MPI MT e TSI MT mantêm motorizações aspiradas/turbo com câmbio manual. Confirme o ano-modelo da unidade e a grade disponível na Norpave antes de apresentar a ficha.</div>
+<div class="section-head"><div><h2>Identidade do produto</h2><p>SUV compacto de entrada, cinco lugares, com três propostas mecânicas na linha descrita pela Volkswagen.</p></div><span class="pill">Linha 2027 · referência oficial</span></div>
 <div class="detailgrid">
-<div class="detailbox"><small>Motorização MPI</small><strong>1.0, 3 cilindros, 999 cm³</strong><p>77 cv (gasolina) / 84 cv (etanol); torque 9,6 / 10,3 kgfm.</p></div>
-<div class="detailbox"><small>Motorização TSI</small><strong>1.0 turbo, 3 cilindros, 999 cm³</strong><p>109 cv (gasolina) / 116 cv (etanol); torque 16,8 kgfm.</p></div>
-<div class="detailbox"><small>Transmissões</small><strong>MPI: manual de 5 marchas</strong><p>TSI: manual de 5 marchas ou automática de 6 marchas, conforme versão.</p></div>
-<div class="detailbox"><small>Combustível</small><strong>Total Flex</strong><p>Gasolina ou etanol, em qualquer proporção.</p></div>
-<div class="detailbox"><small>Dimensões básicas</small><strong>4.074 mm comprimento</strong><p>1.751 mm largura sem espelhos; 1.471 mm altura; entre-eixos 2.566 mm.</p></div>
-<div class="detailbox"><small>Capacidades</small><strong>Porta-malas: 300 litros</strong><p>Tanque: aproximadamente 49 litros. Confirmar variações de configuração.</p></div>
+<div class="detailbox"><small>Tera MPI MT</small><strong>1.0 MPI flex · manual</strong><p>84 cv e 101 Nm (10,3 kgfm) de torque, conforme página oficial VW.</p></div>
+<div class="detailbox"><small>Tera TSI MT</small><strong>1.0 170 TSI · manual</strong><p>116 cv e 165 Nm (16,8 kgfm) de torque. Transmissão manual de 5 marchas na linha apresentada.</p></div>
+<div class="detailbox"><small>Tera Comfort / High</small><strong>1.0 200 TSI · automático</strong><p>128 cv e 200 Nm (20,4 kgfm) de torque, com transmissão automática de 8 marchas.</p></div>
+<div class="detailbox"><small>Tração e combustível</small><strong>Tração dianteira · Flex</strong><p>As configurações citadas utilizam motores flex e tração dianteira.</p></div>
+<div class="detailbox"><small>Porta-malas</small><strong>350 litros</strong><p>Capacidade informada pela Volkswagen para o Tera.</p></div>
+<div class="detailbox"><small>Carroceria</small><strong>SUV compacto · 5 lugares</strong><p>Proposta voltada ao uso urbano e deslocamentos rodoviários.</p></div>
 </div>
-<div class="section-head"><div><h2>Desempenho declarado no manual</h2><p>Valores de referência do modelo básico; podem variar conforme versão, carga, combustível e condições.</p></div></div>
-<div class="detailgrid">
-<div class="detailbox"><small>MPI · 0–100 km/h</small><strong>13,5 s no etanol</strong><p>14,0 s na gasolina.</p></div>
-<div class="detailbox"><small>TSI manual · 0–100 km/h</small><strong>9,4 s no etanol</strong><p>9,6 s na gasolina.</p></div>
-<div class="detailbox"><small>TSI automático · 0–100 km/h</small><strong>10,4 s no etanol</strong><p>10,9 s na gasolina.</p></div>
-<div class="detailbox"><small>Altura livre do solo</small><strong>153 mm</strong><p>Referência do Polo básico no manual.</p></div>
-</div>
-<div class="section-head"><div><h2>Itens de destaque</h2><p>Confirme a presença em cada versão antes da demonstração.</p></div></div>
+<div class="section-head"><div><h2>O que diferencia as motorizações</h2><p>Ajude o cliente a escolher pela utilização, não apenas pelo número de potência.</p></div></div>
 <ul class="list">
-<li><b>Motor TSI:</b> turbo com torque máximo de 16,8 kgfm em baixa rotação, favorecendo respostas em retomadas e uso cotidiano.</li>
-<li><b>Iluminação:</b> a Volkswagen destaca projetores de LED e luz de condução diurna na página do modelo; confirmar versão/equipamento.</li>
-<li><b>Conectividade:</b> VW Play e integração com smartphone aparecem na comunicação oficial, com disponibilidade conforme configuração.</li>
-<li><b>Painel digital:</b> Active Info Display de 8” ou 10,25” é apresentado no site conforme configuração.</li>
-<li><b>Carregamento por indução:</b> recurso descrito pela Volkswagen; depende de versão e compatibilidade Qi do aparelho.</li>
-<li><b>Segurança:</b> demonstrar os equipamentos efetivamente instalados no veículo, sem generalizar itens de uma versão para toda a linha.</li>
+<li><b>MPI:</b> proposta de entrada, motor aspirado e câmbio manual. Investigue se o cliente prioriza simplicidade e preço de aquisição.</li>
+<li><b>170 TSI manual:</b> motor turbo com 116 cv e 165 Nm, para quem quer desempenho turbo e prefere trocar as marchas.</li>
+<li><b>200 TSI automático:</b> nas versões Comfort e High da linha 2027, eleva potência e torque e combina o motor a uma transmissão automática de oito marchas.</li>
 </ul>
-<div class="section-head"><div><h2>Versões e posicionamento</h2><p>Use esta estrutura como orientação; valide a grade comercial vigente da Norpave.</p></div></div>
-<div class="detailgrid">
-<div class="detailbox"><small>Polo Track</small><strong>Entrada / racionalidade</strong><p>Foco em mobilidade, praticidade e custo de aquisição. Não confundir com o Polo regular.</p></div>
-<div class="detailbox"><small>Polo (linha regular)</small><strong>Hatch compacto versátil</strong><p>Investigue motorização, transmissão e pacote de equipamentos da unidade ofertada.</p></div>
-</div>
-<div class="section-head"><div><h2>Comparativo de motorização: Polo × Hyundai HB20</h2><p>Comparação de versões equivalentes por proposta de motor, não de preço ou equipamento.</p></div></div>
-<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:#fff;font-size:13px"><thead><tr><th style="text-align:left;padding:10px;border-bottom:1px solid #dce4ed">Configuração</th><th style="text-align:left;padding:10px;border-bottom:1px solid #dce4ed">Polo</th><th style="text-align:left;padding:10px;border-bottom:1px solid #dce4ed">HB20</th></tr></thead><tbody>
-<tr><td style="padding:10px;border-bottom:1px solid #dce4ed">1.0 aspirado flex</td><td style="padding:10px;border-bottom:1px solid #dce4ed">84 cv E / 77 cv G; 10,3 / 9,6 kgfm</td><td style="padding:10px;border-bottom:1px solid #dce4ed">80 cv E / 75 cv G; 10,2 / 9,6 kgfm</td></tr>
-<tr><td style="padding:10px;border-bottom:1px solid #dce4ed">1.0 turbo flex</td><td style="padding:10px;border-bottom:1px solid #dce4ed">116 cv E / 109 cv G; 16,8 kgfm</td><td style="padding:10px;border-bottom:1px solid #dce4ed">120 cv E / 115 cv G; 17,5 kgfm</td></tr>
-<tr><td style="padding:10px">Transmissão</td><td style="padding:10px">MPI manual 5; TSI manual 5 ou automática 6</td><td style="padding:10px">Aspirado manual 5; turbo automático 6 (catálogo consultado)</td></tr>
-</tbody></table></div>
-<div class="warning"><b>Leitura comercial honesta:</b> no comparativo de potência e torque, o HB20 turbo apresenta números superiores aos do Polo TSI nas fichas consultadas. O argumento de venda deve considerar o conjunto do veículo, equipamentos, dirigibilidade, experiência, proposta de valor e preferência do cliente — nunca afirmar superioridade sem evidência.</div>
-<div class="section-head"><div><h2>Perfil de comprador e perguntas de diagnóstico</h2></div></div>
+<div class="section-head"><div><h2>Itens de destaque e tecnologia</h2><p>A disponibilidade pode variar por versão, pacote e ano-modelo.</p></div></div>
 <ul class="list">
-<li>Cliente que procura hatch compacto para deslocamentos urbanos e uso misto.</li><li>Motorista que valoriza opção de câmbio automático: investigar Polo TSI automático.</li><li>Cliente que prioriza preço de entrada e simplicidade: avaliar Polo Track, se disponível.</li><li>Pergunte: “Você roda mais na cidade ou na estrada?”, “O câmbio automático é indispensável?”, “O que mais sente falta no carro atual?”</li>
+<li><b>VW Play Connect de 10,1 polegadas:</b> central multimídia conectada, com funções do veículo e entretenimento.</li>
+<li><b>Painel digital:</b> apresentação das informações de condução em formato digital; confirme tamanho e configuração na versão.</li>
+<li><b>Carro conectado / Meu VW:</b> recursos conectados e consulta de informações do veículo conforme serviços e compatibilidade.</li>
+<li><b>Carregamento por indução:</b> conveniência para smartphones compatíveis; conferir presença na versão.</li>
+<li><b>Assistências ao condutor:</b> a Volkswagen cita recursos como assistente ativo de mudança de faixa, detector de ponto cego e assistente de saída de vaga. Confirmar quais estão instalados em cada versão.</li>
+<li><b>Segurança:</b> validar airbags, frenagem autônoma de emergência, sensores e demais sistemas no catálogo da versão específica. Não generalizar itens da versão topo para toda a linha.</li>
+</ul>
+<div class="section-head"><div><h2>Comparativo de motorização: Tera × Kardian × Pulse</h2><p>Referência de motores turbo flex de versões 2026/2027; não é comparação de preço nem de equipamentos equivalentes.</p></div></div>
+<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:#fff;font-size:13px"><thead><tr><th style="text-align:left;padding:10px;border-bottom:1px solid #dce4ed">Modelo / conjunto</th><th style="text-align:left;padding:10px;border-bottom:1px solid #dce4ed">Potência</th><th style="text-align:left;padding:10px;border-bottom:1px solid #dce4ed">Torque</th><th style="text-align:left;padding:10px;border-bottom:1px solid #dce4ed">Transmissão</th></tr></thead><tbody>
+<tr><td style="padding:10px;border-bottom:1px solid #dce4ed">VW Tera 200 TSI MY27</td><td style="padding:10px;border-bottom:1px solid #dce4ed">128 cv</td><td style="padding:10px;border-bottom:1px solid #dce4ed">200 Nm (20,4 kgfm)</td><td style="padding:10px;border-bottom:1px solid #dce4ed">Automática 8 marchas</td></tr>
+<tr><td style="padding:10px;border-bottom:1px solid #dce4ed">Renault Kardian TCe MY26</td><td style="padding:10px;border-bottom:1px solid #dce4ed">125 cv (etanol) / 120 cv (gasolina)</td><td style="padding:10px;border-bottom:1px solid #dce4ed">220 Nm (etanol) / 200 Nm (gasolina)</td><td style="padding:10px;border-bottom:1px solid #dce4ed">Manual 6 ou dupla embreagem 6, conforme versão</td></tr>
+<tr><td style="padding:10px">Fiat Pulse T200 MY26</td><td style="padding:10px">130 cv (etanol) / 125 cv (gasolina)</td><td style="padding:10px">200 Nm (20,4 kgfm)</td><td style="padding:10px">CVT, conforme versão</td></tr>
+</tbody></table></div>
+<div class="warning"><b>Leitura comercial:</b> o Kardian TCe declara torque máximo superior em etanol; o Pulse T200 declara potência máxima ligeiramente superior em etanol; o Tera 200 TSI combina 128 cv com câmbio automático de oito marchas. Não conclua que um veículo é globalmente melhor apenas por potência ou torque. Compare versões, equipamentos, dirigibilidade, consumo oficial, garantia, preço e necessidade do comprador.</div>
+<div class="section-head"><div><h2>Perfil de comprador e diagnóstico</h2></div></div>
+<ul class="list">
+<li><b>Cliente urbano:</b> pergunte sobre trânsito, estacionamento, deslocamentos diários e preferência por câmbio automático.</li>
+<li><b>Casal ou família pequena:</b> investigue uso do porta-malas, cadeirinhas, passageiros e viagens.</li>
+<li><b>Cliente que compara SUVs compactos:</b> descubra quais modelos e versões estão na lista e quais critérios pesam mais.</li>
+<li><b>Cliente orientado a desempenho:</b> explique a diferença entre MPI, 170 TSI manual e 200 TSI automático.</li>
 </ul>
 <div class="section-head"><div><h2>Objeções e respostas consultivas</h2></div></div>
-<div class="accordion"><button>“O HB20 turbo tem mais potência.” <span>＋</span></button><div class="answer">“Sim, nas fichas consultadas o HB20 turbo declara 120 cv com etanol e 115 cv com gasolina, contra 116 cv e 109 cv do Polo TSI. Vamos comparar também equipamentos, espaço, comportamento ao dirigir e a versão exata que você está considerando?”</div></div>
-<div class="accordion"><button>“Quero saber o consumo real.” <span>＋</span></button><div class="answer">Não prometa consumo real único. Consulte a etiqueta PBEV/Inmetro do ano-modelo e explique que o resultado varia com combustível, trânsito, trajeto, carga, pneus e condução.</div></div>
-<div class="accordion"><button>“Qual versão tem todos esses equipamentos?” <span>＋</span></button><div class="answer">Confirme a ficha de equipamentos da versão e o código da unidade no sistema Norpave. Não generalize itens de uma configuração para toda a linha.</div></div>
-<div class="section-head"><div><h2>Fontes e validação</h2><p>Fontes oficiais consultadas para esta ficha.</p></div></div>
+<div class="accordion"><button>“O Kardian tem mais torque.” <span>＋</span></button><div class="answer">“Sim. Na ficha do Kardian TCe MY26, a Renault declara até 220 Nm com etanol. O Tera 200 TSI MY27 declara 200 Nm. Vamos também comparar o câmbio, a resposta ao dirigir, os equipamentos e a versão exata que você pretende comprar?”</div></div>
+<div class="accordion"><button>“O Pulse tem mais potência.” <span>＋</span></button><div class="answer">“O Pulse T200 MY26 declara 130 cv com etanol, enquanto o Tera 200 TSI declara 128 cv. A diferença isolada não conta toda a história: vale avaliar transmissão, comportamento, equipamentos, espaço e custo total.”</div></div>
+<div class="accordion"><button>“Qual versão do Tera é automática?” <span>＋</span></button><div class="answer">“Na linha 2027 divulgada pela Volkswagen, Comfort e High usam motor 200 TSI e câmbio automático de oito marchas. Vamos confirmar o ano-modelo e a disponibilidade da unidade na Norpave.”</div></div>
+<div class="accordion"><button>“Todos os Tera têm os mesmos equipamentos?” <span>＋</span></button><div class="answer">“Não. Os equipamentos variam conforme versão e ano-modelo. Vou conferir a ficha específica da unidade para mostrar exatamente o que ela oferece.”</div></div>
+<div class="section-head"><div><h2>Fontes oficiais e referências</h2><p>Consulte sempre a versão mais recente antes de usar os dados em uma proposta.</p></div></div>
 <ul class="list">
-<li><a href="https://www.vw.com.br/pt/carros/polo.html" target="_blank" rel="noopener">Volkswagen Brasil — página oficial do Polo</a></li>
-<li><a href="https://www.vw.com.br/idhub/content/dam/onehub_pkw/importers/br/literatura-de-bordo/manual-novo-polo/my26/26A_5B1_POL_66_Manual_de_instrucoes.pdf" target="_blank" rel="noopener">Volkswagen — Manual do Polo MY26 (dados técnicos)</a></li>
-<li><a href="https://www.hyundai.com.br/content/dam/hmb/cars/hb20/2026-2027/catalogos/Catalogo_Digital_Novo_HB20_Limited-TGDI_26_27.pdf" target="_blank" rel="noopener">Hyundai — catálogo HB20 2026/2027 (versão turbo)</a></li>
+<li><a href="https://www.vw.com.br/pt/carros/tera.html" target="_blank" rel="noopener">Volkswagen Brasil — Tera (motores, tecnologia e porta-malas)</a></li>
+<li><a href="https://cdn.group.renault.com/ren/br/renault-new-cars/product-plans/2026/kardian/AF_RMA002026B_Catalogo_Kardian_MY26-1.pdf.asset.pdf/e00ea6e28c.pdf" target="_blank" rel="noopener">Renault — catálogo Kardian MY26</a></li>
+<li><a href="https://www.webmotors.com.br/fiat/pulse/2026" target="_blank" rel="noopener">Webmotors — ficha de versões Fiat Pulse 2026</a></li>
+<li><a href="https://www.gov.br/inmetro/pt-br/assuntos/regulamentacao/avaliacao-da-conformidade/programa-brasileiro-de-etiquetagem/tabelas-de-eficiencia-energetica/veiculos-automotivos-pbe-veicular" target="_blank" rel="noopener">Inmetro — tabela PBE Veicular 2026 (consumo oficial)</a></li>
 </ul>
-<p class="muted" style="font-size:12px">Pontos ainda pendentes para fechar a ficha: grade exata de versões 0 km vendidas pela Norpave, equipamentos detalhados por versão, consumo oficial PBEV/Inmetro, preços públicos e concorrentes adicionais. Preço e condição comercial devem vir do sistema atualizado da concessionária.</p>`;
-}else{html+='<div class="warning">Ficha técnica detalhada em preparação. Não utilize campos sem confirmação para orientar clientes ou elaborar propostas.</div><div class="detailgrid"><div class="detailbox"><small>Ano/modelo e versões</small><strong>Consultar catálogo oficial vigente</strong></div><div class="detailbox"><small>Motorização e transmissão</small><strong>Validar por versão</strong></div><div class="detailbox"><small>Potência, torque e consumo</small><strong>Consultar ficha técnica oficial</strong></div><div class="detailbox"><small>Dimensões e capacidades</small><strong>Validar por configuração</strong></div><div class="detailbox"><small>Segurança e assistências</small><strong>Conferir equipamentos de série/opcionais</strong></div><div class="detailbox"><small>Preço, disponibilidade e condições</small><strong>Consultar sistema Norpave</strong></div></div>';}
+<p class="muted" style="font-size:12px">Pendências para a ficha final: confirmar versões e equipamentos da grade Norpave, consumo PBEV por versão do Tera MY27, dimensões completas e itens de série por configuração. Preços, bônus, estoque e condições comerciais devem ser consultados no sistema interno.</p>
+`;}else{html+='<div class="warning">Ficha técnica detalhada em preparação. Não utilize campos sem confirmação para orientar clientes ou elaborar propostas.</div><div class="detailgrid"><div class="detailbox"><small>Ano/modelo e versões</small><strong>Consultar catálogo oficial vigente</strong></div><div class="detailbox"><small>Motorização e transmissão</small><strong>Validar por versão</strong></div><div class="detailbox"><small>Potência, torque e consumo</small><strong>Consultar ficha técnica oficial</strong></div><div class="detailbox"><small>Dimensões e capacidades</small><strong>Validar por configuração</strong></div><div class="detailbox"><small>Segurança e assistências</small><strong>Conferir equipamentos de série/opcionais</strong></div><div class="detailbox"><small>Preço, disponibilidade e condições</small><strong>Consultar sistema Norpave</strong></div></div>';}
 html+='<h2 style="margin-top:22px">Roteiro comercial</h2><ul class="list"><li>Para qual necessidade este modelo pode fazer sentido?</li><li>Quais versões estão efetivamente disponíveis para venda?</li><li>Quais três atributos comprovados são mais relevantes para este cliente?</li><li>Que demonstração ou test-drive ajudaria na decisão?</li></ul>';document.getElementById("carDetail").innerHTML=html;document.querySelectorAll("#carDetail .accordion button").forEach(b=>b.addEventListener("click",()=>{const p=b.parentElement;p.classList.toggle("open");b.querySelector("span").textContent=p.classList.contains("open")?"−":"＋";}));go("ficha");}
 document.getElementById("carSearch").addEventListener("input",renderCars);
 document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{activeFilter=b.dataset.filter;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderCars();}));
